@@ -6,6 +6,7 @@
 
 #include <Vector3.h>
 #include <Matrix3.h>
+#include <MyVector3.h>
 
 using namespace std;
 using namespace sf;
