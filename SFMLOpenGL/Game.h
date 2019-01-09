@@ -18,6 +18,20 @@ public:
 	Game();
 	~Game();
 	void run();
+
+	// cube corners
+	MyVector3 v1{ 1.0f, 1.0f, -5.0f };
+	MyVector3 v2{ -1.0f, 1.0f, -5.0f };
+	MyVector3 v3{ -1.0f, -1.0f, -5.0f };
+	MyVector3 v4{ 1.0f, -1.0f, -5.0f };
+
+	MyVector3 v5{ 1.0f, 1.0f, -6.0f };
+	MyVector3 v6{ -1.0f, 1.0f, -6.0f };
+	MyVector3 v7{ -1.0f, -1.0f, -6.0f };
+	MyVector3 v8{ 1.0f, -1.0f, -6.0f };
+
+	MyVector3 cubeCorners[8];
+
 private:
 	Window window;
 	bool isRunning = false;
@@ -25,6 +39,8 @@ private:
 	void update();
 	void render();
 	void unload();
+
+	void checkKeyPress();
 
 	Clock clock;
 	Time elapsed;
