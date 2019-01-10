@@ -31,6 +31,7 @@ public:
 	MyVector3 v8{ 1.0f, -1.0f, -6.0f };
 
 	MyVector3 cubeCorners[8];
+	int vertIndex;
 
 private:
 	Window window;
@@ -41,6 +42,7 @@ private:
 	void unload();
 
 	void checkKeyPress();
+	void updateVerts();
 
 	Clock clock;
 	Time elapsed;
