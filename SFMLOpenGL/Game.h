@@ -31,6 +31,8 @@ public:
 	MyVector3 v8{ 1.0f, -1.0f, 1.0f };
 
 	MyVector3 cubeCorners[8];
+	MyVector3 resultVectors[8];
+	MyVector3 displacementVectors[8];
 	int vertIndex;
 	float vertices[108];
 	unsigned int vertex_index[108];

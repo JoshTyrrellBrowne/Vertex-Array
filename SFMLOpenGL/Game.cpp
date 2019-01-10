@@ -23,6 +23,12 @@ Game::Game() : window(VideoMode(800, 600), "OpenGL Cube")
 	{
 		vertex_index[i] = i;
 	}
+
+	// initialize displacement to 1
+	for (int i = 0; i < 8; i++)
+	{
+		displacementVectors[i] = { 1,1,1 };
+	}
 }
 
 Game::~Game() {}
@@ -244,240 +250,230 @@ void Game::checkKeyPress()
 		}
 	}
 	// TRANSLATION...
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		// vector addition way..
-	//		/*displacementVectors[i] = displacementVectors[i] + MyVector3(0,0.01,0);*/
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			// vector addition way..
+			/*displacementVectors[i] = displacementVectors[i] + MyVector3(0,0.01,0);*/
 
-	//		// Matrix Translation way..
-	//		if (displacementVectors[i].z >= 0)// if z < 0 the translation will be opposite
-	//		{
-	//			displacementVectors[i] = MyMatrix3::translation(MyVector3(0, 0.01, 0)) * displacementVectors[i];
-	//		}
-	//		else
-	//		{
-	//			displacementVectors[i] = MyMatrix3::translation(MyVector3(0, -0.01, 0)) * displacementVectors[i];
-	//		}
-	//	}
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		// vector addition way..
-	//		/*displacementVectors[i] = displacementVectors[i] + MyVector3(0, -0.01, 0);*/
+			// Matrix Translation way..
+			if (displacementVectors[i].z >= 0)// if z < 0 the translation will be opposite
+			{
+				displacementVectors[i] = MyMatrix3::translation(MyVector3(0, 0.01, 0)) * displacementVectors[i];
+			}
+			else
+			{
+				displacementVectors[i] = MyMatrix3::translation(MyVector3(0, -0.01, 0)) * displacementVectors[i];
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			// vector addition way..
+			/*displacementVectors[i] = displacementVectors[i] + MyVector3(0, -0.01, 0);*/
 
-	//		// Matrix Translation way..
-	//		if (displacementVectors[i].z >= 0)// if z < 0 the translation will be opposite
-	//		{
-	//			displacementVectors[i] = MyMatrix3::translation(MyVector3(0, -0.01, 0)) * displacementVectors[i];
-	//		}
-	//		else
-	//		{
-	//			displacementVectors[i] = MyMatrix3::translation(MyVector3(0, 0.01, 0)) * displacementVectors[i];
-	//		}
-	//	}
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		// vector addition way..
-	//		/*displacementVectors[i] = displacementVectors[i] + MyVector3(0.01, 0, 0);*/
+			// Matrix Translation way..
+			if (displacementVectors[i].z >= 0)// if z < 0 the translation will be opposite
+			{
+				displacementVectors[i] = MyMatrix3::translation(MyVector3(0, -0.01, 0)) * displacementVectors[i];
+			}
+			else
+			{
+				displacementVectors[i] = MyMatrix3::translation(MyVector3(0, 0.01, 0)) * displacementVectors[i];
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			// vector addition way..
+			/*displacementVectors[i] = displacementVectors[i] + MyVector3(0.01, 0, 0);*/
 
-	//		// Matrix Translation way..
-	//		if (displacementVectors[i].z >= 0)// if z < 0 the translation will be opposite
-	//		{
-	//			displacementVectors[i] = MyMatrix3::translation(MyVector3(0.01, 0, 0)) * displacementVectors[i];
-	//		}
-	//		else
-	//		{
-	//			displacementVectors[i] = MyMatrix3::translation(MyVector3(-0.01, 0, 0)) * displacementVectors[i];
-	//		}
-	//	}
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		// vector addition way..
-	//		/*displacementVectors[i] = displacementVectors[i] + MyVector3(-0.01, 0, 0);*/
+			// Matrix Translation way..
+			if (displacementVectors[i].z >= 0)// if z < 0 the translation will be opposite
+			{
+				displacementVectors[i] = MyMatrix3::translation(MyVector3(0.01, 0, 0)) * displacementVectors[i];
+			}
+			else
+			{
+				displacementVectors[i] = MyMatrix3::translation(MyVector3(-0.01, 0, 0)) * displacementVectors[i];
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			// vector addition way..
+			/*displacementVectors[i] = displacementVectors[i] + MyVector3(-0.01, 0, 0);*/
 
-	//		// Matrix Translation way..
-	//		if (displacementVectors[i].z >= 0)	// if z < 0 the translation will be opposite
-	//		{
-	//			displacementVectors[i] = MyMatrix3::translation(MyVector3(-0.01, 0, 0)) * displacementVectors[i];
-	//		}
-	//		else
-	//		{
-	//			displacementVectors[i] = MyMatrix3::translation(MyVector3(0.01, 0, 0)) * displacementVectors[i];
-	//		}
-	//	}
-	//}
+			// Matrix Translation way..
+			if (displacementVectors[i].z >= 0)	// if z < 0 the translation will be opposite
+			{
+				displacementVectors[i] = MyMatrix3::translation(MyVector3(-0.01, 0, 0)) * displacementVectors[i];
+			}
+			else
+			{
+				displacementVectors[i] = MyMatrix3::translation(MyVector3(0.01, 0, 0)) * displacementVectors[i];
+			}
+		}
+	}
 	
 }
 
 void Game::updateVerts()
 {
-	/*vertIndex = 0;
 	for (int i = 0; i < 8; i++)
 	{
-		vertices[vertIndex] = cubeCorners[i].x;
-		vertIndex++;
-		vertices[vertIndex] = cubeCorners[i].y;
-		vertIndex++;
-		vertices[vertIndex] = cubeCorners[i].z;
-		vertIndex++;
-	}*/
+		resultVectors[i] = cubeCorners[i] + displacementVectors[i];
+	}
 
 	//v0
-	vertices[0] = cubeCorners[0].x;
-	vertices[1] = cubeCorners[0].y;
-	vertices[2] = cubeCorners[0].z;
+	vertices[0] = resultVectors[0].x;
+	vertices[1] = resultVectors[0].y;
+	vertices[2] = resultVectors[0].z;
 	//v1
-	vertices[3] = cubeCorners[1].x;
-	vertices[4] = cubeCorners[1].y;
-	vertices[5] = cubeCorners[1].z;
+	vertices[3] = resultVectors[1].x;
+	vertices[4] = resultVectors[1].y;
+	vertices[5] = resultVectors[1].z;
 	//v2
-	vertices[6] = cubeCorners[2].x;
-	vertices[7] = cubeCorners[2].y;
-	vertices[8] = cubeCorners[2].z;
+	vertices[6] = resultVectors[2].x;
+	vertices[7] = resultVectors[2].y;
+	vertices[8] = resultVectors[2].z;
 	//v3
-	vertices[9] = cubeCorners[0].x;
-	vertices[10] = cubeCorners[0].y;
-	vertices[11] = cubeCorners[0].z;
+	vertices[9] = resultVectors[0].x;
+	vertices[10] = resultVectors[0].y;
+	vertices[11] = resultVectors[0].z;
 	//v4
-	vertices[12] = cubeCorners[3].x;
-	vertices[13] = cubeCorners[3].y;
-	vertices[14] = cubeCorners[3].z;
+	vertices[12] = resultVectors[3].x;
+	vertices[13] = resultVectors[3].y;
+	vertices[14] = resultVectors[3].z;
 	//v5
-	vertices[15] = cubeCorners[2].x;
-	vertices[16] = cubeCorners[2].y;
-	vertices[17] = cubeCorners[2].z;
+	vertices[15] = resultVectors[2].x;
+	vertices[16] = resultVectors[2].y;
+	vertices[17] = resultVectors[2].z;
 	//v6
-	vertices[18] = cubeCorners[4].x;
-	vertices[19] = cubeCorners[4].y;
-	vertices[20] = cubeCorners[4].z;
+	vertices[18] = resultVectors[4].x;
+	vertices[19] = resultVectors[4].y;
+	vertices[20] = resultVectors[4].z;
 	//v7
-	vertices[21] = cubeCorners[5].x;
-	vertices[22] = cubeCorners[5].y;
-	vertices[23] = cubeCorners[5].z;
+	vertices[21] = resultVectors[5].x;
+	vertices[22] = resultVectors[5].y;
+	vertices[23] = resultVectors[5].z;
 	//v8
-	vertices[24] = cubeCorners[6].x;
-	vertices[25] = cubeCorners[6].y;
-	vertices[26] = cubeCorners[6].z;
+	vertices[24] = resultVectors[6].x;
+	vertices[25] = resultVectors[6].y;
+	vertices[26] = resultVectors[6].z;
 	//v9
-	vertices[27] = cubeCorners[4].x;
-	vertices[28] = cubeCorners[4].y;
-	vertices[29] = cubeCorners[4].z;
+	vertices[27] = resultVectors[4].x;
+	vertices[28] = resultVectors[4].y;
+	vertices[29] = resultVectors[4].z;
 	//v10
-	vertices[30] = cubeCorners[7].x;
-	vertices[31] = cubeCorners[7].y;
-	vertices[32] = cubeCorners[7].z;
+	vertices[30] = resultVectors[7].x;
+	vertices[31] = resultVectors[7].y;
+	vertices[32] = resultVectors[7].z;
 	//v11
-	vertices[33] = cubeCorners[6].x;
-	vertices[34] = cubeCorners[6].y;
-	vertices[35] = cubeCorners[6].z;
+	vertices[33] = resultVectors[6].x;
+	vertices[34] = resultVectors[6].y;
+	vertices[35] = resultVectors[6].z;
 	//v12
-	vertices[36] = cubeCorners[0].x;
-	vertices[37] = cubeCorners[0].y;
-	vertices[38] = cubeCorners[0].z;
+	vertices[36] = resultVectors[0].x;
+	vertices[37] = resultVectors[0].y;
+	vertices[38] = resultVectors[0].z;
 	//v13
-	vertices[39] = cubeCorners[1].x;
-	vertices[40] = cubeCorners[1].y;
-	vertices[41] = cubeCorners[1].z;
+	vertices[39] = resultVectors[1].x;
+	vertices[40] = resultVectors[1].y;
+	vertices[41] = resultVectors[1].z;
 	//v14
-	vertices[42] = cubeCorners[5].x;
-	vertices[43] = cubeCorners[5].y;
-	vertices[44] = cubeCorners[5].z;
+	vertices[42] = resultVectors[5].x;
+	vertices[43] = resultVectors[5].y;
+	vertices[44] = resultVectors[5].z;
 	//v15
-	vertices[45] = cubeCorners[4].x;
-	vertices[46] = cubeCorners[4].y;
-	vertices[47] = cubeCorners[4].z;
+	vertices[45] = resultVectors[4].x;
+	vertices[46] = resultVectors[4].y;
+	vertices[47] = resultVectors[4].z;
 	//v16
-	vertices[48] = cubeCorners[5].x;
-	vertices[49] = cubeCorners[5].y;
-	vertices[50] = cubeCorners[5].z;
+	vertices[48] = resultVectors[5].x;
+	vertices[49] = resultVectors[5].y;
+	vertices[50] = resultVectors[5].z;
 	//v17
-	vertices[51] = cubeCorners[0].x;
-	vertices[52] = cubeCorners[0].y;
-	vertices[53] = cubeCorners[0].z;
+	vertices[51] = resultVectors[0].x;
+	vertices[52] = resultVectors[0].y;
+	vertices[53] = resultVectors[0].z;
 	//v18
-	vertices[54] = cubeCorners[0].x;
-	vertices[55] = cubeCorners[0].y;
-	vertices[56] = cubeCorners[0].z;
-
+	vertices[54] = resultVectors[0].x;
+	vertices[55] = resultVectors[0].y;
+	vertices[56] = resultVectors[0].z;
 	//v19
-	vertices[57] = cubeCorners[3].x;
-	vertices[58] = cubeCorners[3].y;
-	vertices[59] = cubeCorners[3].z;
+	vertices[57] = resultVectors[3].x;
+	vertices[58] = resultVectors[3].y;
+	vertices[59] = resultVectors[3].z;
 	//v20
-	vertices[60] = cubeCorners[7].x;
-	vertices[61] = cubeCorners[7].y;
-	vertices[62] = cubeCorners[7].z;
+	vertices[60] = resultVectors[7].x;
+	vertices[61] = resultVectors[7].y;
+	vertices[62] = resultVectors[7].z;
 	//v21
-	vertices[63] = cubeCorners[7].x;
-	vertices[64] = cubeCorners[7].y;
-	vertices[65] = cubeCorners[7].z;
+	vertices[63] = resultVectors[7].x;
+	vertices[64] = resultVectors[7].y;
+	vertices[65] = resultVectors[7].z;
 	//v22
-	vertices[66] = cubeCorners[4].x;
-	vertices[67] = cubeCorners[4].y;
-	vertices[68] = cubeCorners[4].z;
-
+	vertices[66] = resultVectors[4].x;
+	vertices[67] = resultVectors[4].y;
+	vertices[68] = resultVectors[4].z;
 	//23
-	vertices[69] = cubeCorners[0].x;
-	vertices[70] = cubeCorners[0].y;
-	vertices[71] = cubeCorners[0].z;
+	vertices[69] = resultVectors[0].x;
+	vertices[70] = resultVectors[0].y;
+	vertices[71] = resultVectors[0].z;
 	//24
-	vertices[72] = cubeCorners[1].x;
-	vertices[73] = cubeCorners[1].y;
-	vertices[74] = cubeCorners[1].z;
+	vertices[72] = resultVectors[1].x;
+	vertices[73] = resultVectors[1].y;
+	vertices[74] = resultVectors[1].z;
 	//25
-	vertices[75] = cubeCorners[2].x;
-	vertices[76] = cubeCorners[2].y;
-	vertices[77] = cubeCorners[2].z;
+	vertices[75] = resultVectors[2].x;
+	vertices[76] = resultVectors[2].y;
+	vertices[77] = resultVectors[2].z;
 	//26
-	vertices[78] = cubeCorners[6].x;
-	vertices[79] = cubeCorners[6].y;
-	vertices[80] = cubeCorners[6].z;
-
+	vertices[78] = resultVectors[6].x;
+	vertices[79] = resultVectors[6].y;
+	vertices[80] = resultVectors[6].z;
 	//27
-	vertices[81] = cubeCorners[6].x;
-	vertices[82] = cubeCorners[6].y;
-	vertices[83] = cubeCorners[6].z;
+	vertices[81] = resultVectors[6].x;
+	vertices[82] = resultVectors[6].y;
+	vertices[83] = resultVectors[6].z;
 	//28
-	vertices[84] = cubeCorners[5].x;
-	vertices[85] = cubeCorners[5].y;
-	vertices[86] = cubeCorners[5].z;
+	vertices[84] = resultVectors[5].x;
+	vertices[85] = resultVectors[5].y;
+	vertices[86] = resultVectors[5].z;
 	//29
-	vertices[87] = cubeCorners[1].x;
-	vertices[88] = cubeCorners[1].y;
-	vertices[89] = cubeCorners[1].z;
+	vertices[87] = resultVectors[1].x;
+	vertices[88] = resultVectors[1].y;
+	vertices[89] = resultVectors[1].z;
 	//30
-	vertices[90] = cubeCorners[3].x;
-	vertices[91] = cubeCorners[3].y;
-	vertices[92] = cubeCorners[3].z;
-
+	vertices[90] = resultVectors[3].x;
+	vertices[91] = resultVectors[3].y;
+	vertices[92] = resultVectors[3].z;
 	//31
-	vertices[93] = cubeCorners[7].x;
-	vertices[94] = cubeCorners[7].y;
-	vertices[95] = cubeCorners[7].z;
+	vertices[93] = resultVectors[7].x;
+	vertices[94] = resultVectors[7].y;
+	vertices[95] = resultVectors[7].z;
 	//32
-	vertices[96] = cubeCorners[6].x;
-	vertices[97] = cubeCorners[6].y;
-	vertices[98] = cubeCorners[6].z;
+	vertices[96] = resultVectors[6].x;
+	vertices[97] = resultVectors[6].y;
+	vertices[98] = resultVectors[6].z;
 	//33
-	vertices[99] = cubeCorners[6].x;
-	vertices[100] = cubeCorners[6].y;
-	vertices[101] = cubeCorners[6].z;
+	vertices[99] = resultVectors[6].x;
+	vertices[100] = resultVectors[6].y;
+	vertices[101] = resultVectors[6].z;
 	//34
-	vertices[102] = cubeCorners[2].x;
-	vertices[103] = cubeCorners[2].y;
-	vertices[104] = cubeCorners[2].z;
+	vertices[102] = resultVectors[2].x;
+	vertices[103] = resultVectors[2].y;
+	vertices[104] = resultVectors[2].z;
 	//35
-	vertices[105] = cubeCorners[3].x;
-	vertices[106] = cubeCorners[3].y;
-	vertices[107] = cubeCorners[3].z;
+	vertices[105] = resultVectors[3].x;
+	vertices[106] = resultVectors[3].y;
+	vertices[107] = resultVectors[3].z;
 }
