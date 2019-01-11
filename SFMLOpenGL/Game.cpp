@@ -183,7 +183,7 @@ void Game::render()
 
 	//glDrawArrays(GL_TRIANGLES, 0, 3);
 
-	glDrawElements(GL_TRIANGLES, 108, GL_UNSIGNED_INT, &vertex_index);
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, &vertex_index);
 
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
